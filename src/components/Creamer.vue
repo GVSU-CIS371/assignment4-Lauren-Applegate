@@ -1,10 +1,27 @@
 <template>
-  <div class="froth">
-    <div v-for=" in 5" class="foam"></div>
+  <div class="froth" >
+    <div v-for=" in 5" class="foam" :style="{ backgroundColor: creamerColor}"></div>
   </div>
+
 </template>
 
-<script setup lang="ts"></script>
+
+<script setup lang="ts">
+import { computed } from "vue";
+import { creamers } from "../stores/beverage"; 
+
+const props = defineProps<{
+  selectedCreamer: string;
+}>();
+
+const creamerColor = computed(() => {
+  const option = creamers.value.find((c) => c.id === props.selectedCreamer);
+  return option?.color ?? "#c6c6c6";
+});
+
+</script>
+
+
 <style lang="scss" scoped>
 .froth {
   overflow: visible;

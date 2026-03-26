@@ -1,20 +1,70 @@
 <template>
   <div>
-    <Beverage :isIced="beverageStore.currentTemp === 'Cold'" />
+    <Beverage 
+      :isIced="currentTemp === 'Cold'" 
+      :selectedSyrup="selectedSyrup"  
+      :selectedCreamer="selectedCreamer" 
+      :selectedBase="selectedBase" />
     <ul>
       <li>
-        <template v-for="temp in beverageStore.temps" :key="temp">
-          <label>
-            <input
-              type="radio"
-              name="temperature"
-              :id="`r${temp}`"
-              :value="temp"
-              v-model="beverageStore.currentTemp"
-            />
-            {{ temp }}
-          </label>
-        </template>
+
+        <section class="option-row">
+          <template v-for="temp in beverageStore.temps" :key="temp">
+            <label>
+              <input
+                type="radio"
+                name="temperature"
+                :id="`r${temp}`"
+                :value="temp"
+                v-model="beverageStore.currentTemp"
+              />
+              {{ temp }}
+            </label>
+          </template>
+        </section>
+
+        <section class="option-row">
+          <template v-for="base in bases" :key="base.id">
+            <label>
+              <input 
+                type="radio" 
+                name="base" 
+                :value="base.id" 
+                v-model="beverageStore.selectedBase" 
+              />
+              {{ base.name }}
+            </label>
+          </template>
+        </section>
+
+        <section class="option-row">
+          <template v-for="cream in creamers" :key="cream.id">
+            <label>
+              <input 
+                type="radio" 
+                name="creamer" 
+                :value="cream.id" 
+                v-model="beverageStore.selectedCreamer" 
+              />
+              {{ cream.name }}
+            </label>
+          </template>
+        </section>
+
+        <section class="option-row">
+          <template v-for="syrup in syrups" :key="syrup.id">
+            <label>
+              <input 
+                type="radio" 
+                name="syrup"
+                :value="syrup.id" 
+                v-model="beverageStore.selectedSyrup" 
+              />
+              {{ syrup.name }}
+            </label>
+          </template>
+        </section>
+
       </li>
     </ul>
     <input type="text" placeholder="Beverage Name" />

@@ -5,14 +5,15 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { bases } from "../stores/beverage"; 
+import { useBeverageStore } from "../stores/beverageStore";
+const store = useBeverageStore(); 
 
 const props = defineProps<{
   selectedBase: string;
 }>();
 
 const baseColor = computed(() => {
-  const option = bases.value.find((b) => b.id === props.selectedBase);
+  const option = store.bases.find((b) => b.id === props.selectedBase);
   return option?.color ?? "#c6c6c6";
 });
 

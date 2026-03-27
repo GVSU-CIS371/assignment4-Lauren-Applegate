@@ -5,14 +5,15 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { syrups } from "../stores/beverage"; 
+import { useBeverageStore } from "../stores/beverageStore";
+const store = useBeverageStore(); 
 
 const props = defineProps<{
   selectedSyrup: string;
 }>();
 
 const syrupColor = computed(() => {
-  const option = syrups.value.find((s) => s.id === props.selectedSyrup);
+  const option = store.syrups.find((s) => s.id === props.selectedSyrup);
   return option?.color ?? "#c6c6c6";
 });
 </script>

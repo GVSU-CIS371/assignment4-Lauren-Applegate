@@ -8,14 +8,15 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { creamers } from "../stores/beverage"; 
+import { useBeverageStore } from "../stores/beverageStore";
+const store = useBeverageStore(); 
 
 const props = defineProps<{
   selectedCreamer: string;
 }>();
 
 const creamerColor = computed(() => {
-  const option = creamers.value.find((c) => c.id === props.selectedCreamer);
+  const option = store.creamers.find((c) => c.id === props.selectedCreamer);
   return option?.color ?? "#c6c6c6";
 });
 

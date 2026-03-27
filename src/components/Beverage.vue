@@ -26,7 +26,9 @@ import Base from "./Base.vue";
 import Creamer from "./Creamer.vue";
 import Hot from "./Hot.vue";
 import Cold from "./Cold.vue";
-import { creamers, syrups } from "../stores/beverage";
+import { useBeverageStore } from "../stores/beverageStore";
+const store = useBeverageStore();
+
 
 type Props = {
   isIced: boolean;
@@ -36,6 +38,6 @@ type Props = {
 };
 defineProps<Props>();
 
-const noCreamerId = computed(() => creamers.value.find((c) => c.name === "No Cream")?.id ?? "c1");
-const noSyrupId = computed(() => syrups.value.find((s) => s.name === "No Syrup")?.id ?? "s1");
+const noCreamerId = computed(() => store.creamers.find((c) => c.name === "No Cream")?.id ?? "c1");
+const noSyrupId = computed(() => store.syrups.find((s) => s.name === "No Syrup")?.id ?? "s1");
 </script>

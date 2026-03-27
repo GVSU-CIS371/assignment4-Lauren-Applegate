@@ -45,5 +45,7 @@ export const useBeverageStore = defineStore("BeverageStore", {
     },
     
   },
-  persist: true,
+  persist: {
+    pick: ['recipes']
+  },
 });

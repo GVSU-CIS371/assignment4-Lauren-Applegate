@@ -16,13 +16,13 @@ interface Beverage {
 export const useBeverageStore = defineStore("BeverageStore", {
   state: () => ({
     temps: tempretures,
-    currentTemp: tempretures[1],
+    currentTemp: tempretures.find(t => t === "Cold") ?? tempretures[0],
     syrups: syrups,
-    currentSyrup: syrups[1].id,
+    currentSyrup: syrups.find(s => s.id === "Vanilla")?.id ?? syrups[0].id,
     creamers: creamers,
-    currentCreamer: creamers[1].id,
+    currentCreamer: creamers.find(c => c.id === "Cream")?.id ?? creamers[0].id,
     bases: bases,
-    currentBase: bases[1].id,
+    currentBase: bases.find(b => b.id === "Green Tea")?.id ?? bases[0].id,
     recipes: [] as Beverage[],
   }),
 
@@ -45,7 +45,5 @@ export const useBeverageStore = defineStore("BeverageStore", {
     },
     
   },
-  persist: {
-    pick: ['recipes']
-  },
+  persist: true,
 });
